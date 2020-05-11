@@ -2,8 +2,8 @@
 %global _description The dateutil module provides powerful extensions to the standard datetime module, available in Python.
 
 Name:       python-dateutil
-Version:    2.7.0
-Release:    7
+Version:    2.8.1
+Release:    1
 Epoch:      1
 Summary:    Powerful extensions to datetime
 License:    Apache 2.0 or BSD
@@ -70,6 +70,12 @@ Requires:       python3-six tzdata
 %doc NEWS PKG-INFO RELEASING
 
 %changelog
+* Mon May 11 2020 openEuler Buildteam<buildteam@openeuler.org> - 1:2.8.1-1
+- Type:requirement
+- ID:NA
+- SUG:NA
+- DESC:update to 2.8.1
+
 * Fri Sep 27 2019 shenyangyang<shenyangyang4@huawei.com> - 1:2.7.0-7
 - Type:enhancement
 - ID:NA
