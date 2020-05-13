@@ -3,7 +3,7 @@
 
 Name:       python-dateutil
 Version:    2.8.1
-Release:    1
+Release:    2
 Epoch:      1
 Summary:    Powerful extensions to datetime
 License:    Apache 2.0 or BSD
@@ -70,6 +70,12 @@ Requires:       python3-six tzdata
 %doc NEWS PKG-INFO RELEASING
 
 %changelog
+* Wed May 13 2020 wangchen<wangchen137@huawei.com> - 1:2.8.1-2
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC:delete python-dateutil-2.7.0.tar.gz
+
 * Mon May 11 2020 openEuler Buildteam<buildteam@openeuler.org> - 1:2.8.1-1
 - Type:requirement
 - ID:NA
