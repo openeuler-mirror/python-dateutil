@@ -3,7 +3,7 @@
 
 Name:       python-dateutil
 Version:    2.8.1
-Release:    1
+Release:    2
 Epoch:      1
 Summary:    Powerful extensions to datetime
 License:    Apache 2.0 or BSD
@@ -14,15 +14,6 @@ BuildArch:  noarch
 Buildrequires:  gdb
 
 %description
-%{_description}
-
-%package -n python2-%{_name}
-Summary:        %{summary}
-Buildrequires:  python2-devel python2-setuptools python2-setuptools_scm python2-six python2-pytest python2-freezegun python2-hypothesis
-Requires:       python2-six tzdata
-%{?python_provide:%python_provide python2-%{_name}}
-
-%description -n python2-%{_name}
 %{_description}
 
 %package -n python3-%{_name}
@@ -40,22 +31,13 @@ Requires:       python3-six tzdata
 %autosetup -n %{name}-%{version} -p1
 
 %build
-%py2_build
 %py3_build
 
 %install
-%py2_install
 %py3_install
 
 %check
 %{__python3} -m pytest
-
-%files -n python2-%{_name}
-%defattr(-,root,root)
-%doc README.rst
-%license LICENSE
-%{python2_sitelib}/%{_name}/
-%{python2_sitelib}/*info
 
 %files -n python3-%{_name}
 %defattr(-,root,root)
@@ -69,6 +51,12 @@ Requires:       python3-six tzdata
 %doc NEWS PKG-INFO RELEASING
 
 %changelog
+* Fri Oct 30 2020 shixuantong<shixuantong@huawei.com> - 2.8.1-2
+- Type:NA
+- ID:NA
+- SUG:NA
+- DESC:remove python2 dependency
+
 * Thu Jul 23 2020 dingyue<dingyue5@huawei.com> - 1:2.8.1-1
 - Type:enhancement
 - ID:NA
