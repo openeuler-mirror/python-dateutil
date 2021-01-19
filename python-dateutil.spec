@@ -3,10 +3,10 @@
 
 Name:       python-dateutil
 Version:    2.8.1
-Release:    2
+Release:    3
 Epoch:      1
 Summary:    Powerful extensions to datetime
-License:    Apache 2.0 or BSD
+License:    Apache 2.0 or BSD or Python
 URL:        https://github.com/dateutil/dateutil
 Source0:    https://files.pythonhosted.org/packages/source/p/python-dateutil/python-dateutil-%{version}.tar.gz	
 
@@ -37,6 +37,8 @@ Requires:       python3-six tzdata
 %py3_install
 
 %check
+rm setup.cfg
+export LANG=en_US.UTF-8
 %{__python3} -m pytest
 
 %files -n python3-%{_name}
@@ -51,6 +53,12 @@ Requires:       python3-six tzdata
 %doc NEWS PKG-INFO RELEASING
 
 %changelog
+* Tue Jan 19 2021 tianwei<tianwei12@huawei.com> - 2.8.1-3
+- Type:NA
+- ID:NA
+- SUG:NA
+- DESC: fix Unknown pytest.mark.no_cover fail in make check
+
 * Fri Oct 30 2020 shixuantong<shixuantong@huawei.com> - 2.8.1-2
 - Type:NA
 - ID:NA
