@@ -3,7 +3,7 @@
 
 Name:       python-dateutil
 Version:    2.8.1
-Release:    2
+Release:    3
 Epoch:      1
 Summary:    Powerful extensions to datetime
 License:    Apache 2.0 or BSD
@@ -16,18 +16,9 @@ Buildrequires:  gdb
 %description
 %{_description}
 
-%package -n python2-%{_name}
-Summary:        %{summary}
-Buildrequires:  python2-devel python2-setuptools python2-setuptools_scm python2-six
-Requires:       python2-six tzdata
-%{?python_provide:%python_provide python2-%{_name}}
-
-%description -n python2-%{_name}
-%{_description}
-
 %package -n python3-%{_name}
 Summary:    %{summary}
-Buildrequires:  python3-devel python3-setuptools python3-setuptools_scm python2-six
+Buildrequires:  python3-devel python3-setuptools python3-setuptools_scm python3-six python3-pytest python3-freezegun python3-hypothesis
 Requires:       python3-six tzdata
 %{?python_provide:%python_provide python3-%{_name}}
 
@@ -40,23 +31,17 @@ Requires:       python3-six tzdata
 %autosetup -n %{name}-%{version} -p1
 
 %build
-%py2_build
 %py3_build
 
 %install
-%py2_install
 %py3_install
 
 %check
-%{__python2} setup.py test
-%{__python3} setup.py test
-
-%files -n python2-%{_name}
-%defattr(-,root,root)
-%doc README.rst
-%license LICENSE
-%{python2_sitelib}/%{_name}/
-%{python2_sitelib}/*info
+rm setup.cfg
+export LANG=en_US.UTF-8
+%{__python3} -m pytest \
+	--ignore dateutil/test/property \
+    -k 'not gettz_badzone_unicode'
 
 %files -n python3-%{_name}
 %defattr(-,root,root)
@@ -70,6 +55,12 @@ Requires:       python3-six tzdata
 %doc NEWS PKG-INFO RELEASING
 
 %changelog
+* Mon May 24 2021 chengshaowei<chenshaowei3@huawei.com> - 1:2.8.1-3
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC:delete python-dateutil-2.7.0.tar.gz
+
 * Wed May 13 2020 wangchen<wangchen137@huawei.com> - 1:2.8.1-2
 - Type:bugfix
 - ID:NA
