@@ -3,7 +3,7 @@
 
 Name:       python-dateutil
 Version:    2.8.2
-Release:    1
+Release:    2
 Epoch:      1
 Summary:    Powerful extensions to datetime
 License:    Apache 2.0 or BSD or Python
@@ -18,7 +18,8 @@ Buildrequires:  gdb
 
 %package -n python3-%{_name}
 Summary:    %{summary}
-Buildrequires:  python3-devel python3-setuptools python3-setuptools_scm python3-six python3-pytest python3-freezegun python3-hypothesis
+Buildrequires:  python3-devel python3-setuptools python3-setuptools_scm python3-six
+Buildrequires:  python3-pytest python3-freezegun python3-hypothesis python3-sortedcontainers
 Requires:       python3-six tzdata
 %{?python_provide:%python_provide python3-%{_name}}
 
@@ -53,7 +54,13 @@ export LANG=en_US.UTF-8
 %doc NEWS PKG-INFO RELEASING
 
 %changelog
-*Sat Nov 13 2021 liudabo<liudabo1@huawei.com> - 2.8.2-1
+* Wed Jan 05 2022 shixuantong <shixuantong@huawei.com> - 2.8.2-2
+- Type:bugfix
+- ID:NA
+- SUG:NA
+- DESC:add python3-sortedcontainers to Buildrequires
+
+* Sat Nov 13 2021 liudabo<liudabo1@huawei.com> - 2.8.2-1
 - Type:NA
 - ID:NA
 - SUG:NA
