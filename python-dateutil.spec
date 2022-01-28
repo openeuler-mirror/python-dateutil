@@ -3,8 +3,7 @@
 
 Name:       python-dateutil
 Version:    2.8.1
-Release:    4
-Epoch:      1
+Release:    5
 Summary:    Powerful extensions to datetime
 License:    Apache 2.0 or BSD
 URL:        https://github.com/dateutil/dateutil
@@ -14,15 +13,6 @@ BuildArch:  noarch
 Buildrequires:  gdb
 
 %description
-%{_description}
-
-%package -n python2-%{_name}
-Summary:        %{summary}
-Buildrequires:  python2-devel python2-setuptools python2-setuptools_scm python2-six python2-pytest
-Requires:       python2-six tzdata
-%{?python_provide:%python_provide python2-%{_name}}
-
-%description -n python2-%{_name}
 %{_description}
 
 %package -n python3-%{_name}
@@ -40,28 +30,15 @@ Requires:       python3-six tzdata
 %autosetup -n %{name}-%{version} -p1
 
 %build
-%py2_build
 %py3_build
 
 %install
-%py2_install
 %py3_install
 
 %check
-%{__python3} -m pytest \
-	--ignore dateutil/test/property \
-    -k 'not gettz_badzone_unicode'
-# we don't check python2
-#%{__python2} -m pytest \
-#    --ignore dateutil/test/property \
-#    -k 'not gettz_badzone_unicode'
-
-%files -n python2-%{_name}
-%defattr(-,root,root)
-%doc README.rst
-%license LICENSE
-%{python2_sitelib}/%{_name}/
-%{python2_sitelib}/*info
+rm setup.cfg
+export LANG=en_US.UTF-8
+%{__python3} -m pytest
 
 %files -n python3-%{_name}
 %defattr(-,root,root)
@@ -75,6 +52,9 @@ Requires:       python3-six tzdata
 %doc NEWS PKG-INFO RELEASING
 
 %changelog
+* Wed Jan 26 2022 zhangy1317<zhangy1317@chinaunicom.cn> - 1:2.8.1-5
+- Remove python2
+
 * Tue May 25 2021 chengshaowei<chenshaowei3@huawei.com> - 1:2.8.1-4
 - Type:bugfix
 - ID:NA
