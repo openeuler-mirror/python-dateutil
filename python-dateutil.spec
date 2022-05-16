@@ -3,12 +3,15 @@
 
 Name:       python-dateutil
 Version:    2.8.2
-Release:    2
+Release:    3
 Epoch:      1
 Summary:    Powerful extensions to datetime
 License:    Apache 2.0 or BSD or Python
 URL:        https://github.com/dateutil/dateutil
 Source0:    https://files.pythonhosted.org/packages/source/p/python-dateutil/python-dateutil-%{version}.tar.gz	
+
+# when bootstrapping dateutil-freezegun, we cannot run tests
+%bcond_without tests
 
 BuildArch:  noarch
 Buildrequires:  gdb
@@ -19,8 +22,15 @@ Buildrequires:  gdb
 %package -n python3-%{_name}
 Summary:    %{summary}
 Buildrequires:  python3-devel python3-setuptools python3-setuptools_scm python3-six
-Buildrequires:  python3-pytest python3-freezegun python3-hypothesis python3-sortedcontainers
-Requires:       python3-six tzdata
+Buildrequires:  python3-sortedcontainers
+Requires:       tzdata
+%if %{with tests}
+BuildRequires:  python3-freezegun
+BuildRequires:  python3-hypothesis
+BuildRequires:  python3-pytest
+Requires:  python3-six
+%endif
+
 %{?python_provide:%python_provide python3-%{_name}}
 
 %description -n python3-%{_name}
@@ -37,10 +47,12 @@ Requires:       python3-six tzdata
 %install
 %py3_install
 
+%if %{with tests}
 %check
 rm setup.cfg
 export LANG=en_US.UTF-8
-%{__python3} -m pytest
+%{__python3} -m pytest -W ignore::pytest.PytestUnknownMarkWarning
+%endif
 
 %files -n python3-%{_name}
 %defattr(-,root,root)
@@ -54,6 +66,10 @@ export LANG=en_US.UTF-8
 %doc NEWS PKG-INFO RELEASING
 
 %changelog
+* Sun Apr 24 2022 lvxiaoqian <xiaoqian@nj.iscas.ac.cn> - 2.8.2-3
+- active build with/without test
+- add flag to test
+
 * Wed Jan 05 2022 shixuantong <shixuantong@huawei.com> - 2.8.2-2
 - Type:bugfix
 - ID:NA
